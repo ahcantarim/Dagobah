@@ -11,5 +11,9 @@ namespace Dagobah.Domain.Contracts.Repositories.Core
         IEnumerable<TEntity> GetAll();
 
         IEnumerable<TEntity> GetAll(int take, int skip);
+
+        int Count();
+
+        //TODO: Permitir "predicate" nos métodos GetAll() e Count() => Expression<Func<TEntity, bool>> predicate = null
     }
 }

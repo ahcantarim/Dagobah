@@ -15,6 +15,7 @@ namespace Dagobah.Infrastructure.Data.Repositories
         #region Attributes
 
         private readonly DbContext _context;
+        private DbSet<TEntity> _dbSet;
 
         #endregion
 
@@ -23,6 +24,7 @@ namespace Dagobah.Infrastructure.Data.Repositories
         public BaseRepository(DbContext context)
         {
             _context = context;
+            _dbSet = _context.Set<TEntity>();
         }
 
         #endregion
@@ -31,15 +33,20 @@ namespace Dagobah.Infrastructure.Data.Repositories
 
         public void Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);
+            _dbSet.Add(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                _context.Set<TEntity>().Add(entity);
+                _dbSet.Add(entity);
             }
+        }
+
+        public int Count()
+        {
+            return _dbSet.Count();
         }
 
         public void DeleteById(TId id)
@@ -48,8 +55,29 @@ namespace Dagobah.Infrastructure.Data.Repositories
 
             if (entity != null)
             {
-                _context.Set<TEntity>().Remove(entity);
+                _dbSet.Remove(entity);
             }
+        }
+
+        public IEnumerable<TEntity> GetAll()
+        {
+            //if (predicate != null)
+            //{
+            //    return _dbSet.Where(predicate);
+            //}
+
+            return _dbSet.AsEnumerable();
+        }
+
+        public IEnumerable<TEntity> GetAll(int take, int skip)
+        {
+            //TODO: GetAll(take, skip)
+            throw new NotImplementedException();
+        }
+
+        public TEntity GetById(TId id)
+        {
+            return _dbSet.Find(id);
         }
 
         public void SetAsActiveById(TId id)
@@ -72,22 +100,6 @@ namespace Dagobah.Infrastructure.Data.Repositories
                 entity.SetActive(false);
                 _context.Update(entity);
             }
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return _context.Set<TEntity>().ToList();
-        }
-
-        public IEnumerable<TEntity> GetAll(int take, int skip)
-        {
-            //TODO: GetAllPaged(take, skip)
-            throw new NotImplementedException();
-        }
-
-        public TEntity GetById(TId id)
-        {
-            return _context.Set<TEntity>().Find(id);
         }
 
         public void Update(TEntity entity)
