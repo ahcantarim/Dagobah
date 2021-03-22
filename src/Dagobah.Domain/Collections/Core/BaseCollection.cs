@@ -4,7 +4,8 @@ using System.Collections.ObjectModel;
 
 namespace Dagobah.Domain.Collections.Core
 {
-    public abstract class BaseCollection<T> : ICollection<T>
+    public abstract class BaseCollection<T> :
+        ICollection<T>
     {
         #region Atributtes
 

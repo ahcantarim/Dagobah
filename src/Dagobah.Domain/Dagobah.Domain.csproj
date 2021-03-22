@@ -32,21 +32,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\Core\BaseCollection.cs" />
-    <Compile Include="Contracts\Repositories\Core\IBaseRepository.cs" />
+    <Compile Include="Contracts\AppServices\Core\IAppServiceCreate.cs" />
+    <Compile Include="Contracts\AppServices\Core\IAppServiceDelete.cs" />
+    <Compile Include="Contracts\AppServices\Core\IAppServiceRead.cs" />
+    <Compile Include="Contracts\AppServices\Core\IAppServiceUpdate.cs" />
+    <Compile Include="Contracts\AppServices\IBaseAppService.cs" />
+    <Compile Include="Contracts\Repositories\IBaseRepository.cs" />
     <Compile Include="Contracts\Repositories\Core\IRepositoryCreate.cs" />
     <Compile Include="Contracts\Repositories\Core\IRepositoryDelete.cs" />
     <Compile Include="Contracts\Repositories\Core\IRepositoryRead.cs" />
     <Compile Include="Contracts\Repositories\Core\IRepositoryUpdate.cs" />
-    <Compile Include="Contracts\Services\Core\IBaseService.cs" />
+    <Compile Include="Contracts\Services\IBaseService.cs" />
     <Compile Include="Contracts\Services\Core\IServiceCreate.cs" />
     <Compile Include="Contracts\Services\Core\IServiceDelete.cs" />
     <Compile Include="Contracts\Services\Core\IServiceRead.cs" />
     <Compile Include="Contracts\Services\Core\IServiceUpdate.cs" />
     <Compile Include="Contracts\UnitsOfWork\Core\IUnitOfWork.cs" />
     <Compile Include="Contracts\UnitsOfWork\IBaseUnitOfWork.cs" />
-    <Compile Include="Entities\Core\Entity.cs" />
+    <Compile Include="Entities\Core\BaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\Core\BaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Collections\Core\README.md" />

@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Dagobah.Domain.Contracts.Services.Core
 {
-    public interface IServiceRead<out TEntity, in TId>
-        where TEntity : Entities.Core.Entity<TId>
+    public interface IServiceRead<TEntity, in TId>
+
+        where TEntity : Entities.Core.BaseEntity<TId>
         where TId : struct
     {
         TEntity GetById(TId id);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null);
 
-        IEnumerable<TEntity> GetAll(int take, int skip);
+        IEnumerable<TEntity> GetAll(int take, int skip, Expression<Func<TEntity, bool>> predicate = null);
+
+        int Count(Expression<Func<TEntity, bool>> predicate = null);
     }
 }

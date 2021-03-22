@@ -1,4 +1,4 @@
-﻿using Dagobah.Domain.Contracts.Repositories.Core;
+﻿using Dagobah.Domain.Contracts.Repositories;
 
 namespace Dagobah.Padawan.Domain.Contracts.Repositories
 {

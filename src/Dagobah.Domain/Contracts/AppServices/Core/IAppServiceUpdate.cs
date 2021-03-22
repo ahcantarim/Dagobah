@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Dagobah.Domain.Contracts.Services.Core
+namespace Dagobah.Domain.Contracts.AppServices.Core
 {
-    public interface IServiceUpdate<in TEntity, TId>
+    public interface IAppServiceUpdate<in TEntity, TId>
 
         where TEntity : Entities.Core.BaseEntity<TId>
         where TId : struct

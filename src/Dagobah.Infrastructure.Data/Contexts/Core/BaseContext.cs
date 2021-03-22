@@ -5,7 +5,8 @@ using Conventions = System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Dagobah.Infrastructure.Data.Contexts.Core
 {
-    public class BaseContext : DbContext
+    public class BaseContext :
+        DbContext
     {
         #region Properties
 
@@ -19,14 +20,14 @@ namespace Dagobah.Infrastructure.Data.Contexts.Core
 
         #region Constructors
 
-        public BaseContext()
-            : base("DefaultConnectionString")
+        public BaseContext() :
+            base("DefaultConnectionString")
         {
             ConfigureContext();
         }
 
-        public BaseContext(string nameOrConnectionString)
-            : base(nameOrConnectionString)
+        public BaseContext(string nameOrConnectionString) :
+            base(nameOrConnectionString)
         {
             ConfigureContext();
         }
@@ -46,7 +47,7 @@ namespace Dagobah.Infrastructure.Data.Contexts.Core
         {
             #region Conventions
 
-            //TODO: Permitir que classe filha configure as Conventions.
+            //TODO: Permitir que classe derivada configure as Conventions.
 
             modelBuilder.Conventions.Remove<Conventions.PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<Conventions.OneToManyCascadeDeleteConvention>();
@@ -56,7 +57,7 @@ namespace Dagobah.Infrastructure.Data.Contexts.Core
 
             #region Properties
 
-            //TODO: Permitir que classe filha configure as Properties.
+            //TODO: Permitir que classe derivada configure as Properties.
 
             //// Para configurar todas as propriedades que terminam com "Id" automaticamente como PK.
             //modelBuilder.Properties()

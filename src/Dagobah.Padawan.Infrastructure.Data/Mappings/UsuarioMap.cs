@@ -2,7 +2,8 @@
 
 namespace Dagobah.Padawan.Infrastructure.Data.Mappings
 {
-    public sealed class UsuarioMap : EntityTypeConfiguration<Domain.Entities.UsuarioEntity>
+    public sealed class UsuarioMap : 
+        EntityTypeConfiguration<Domain.Entities.UsuarioEntity>
     {
         public UsuarioMap()
         {

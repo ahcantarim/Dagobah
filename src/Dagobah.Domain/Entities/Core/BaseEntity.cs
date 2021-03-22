@@ -9,7 +9,8 @@ namespace Dagobah.Domain.Entities.Core
     /// A classe foi criada como abstrata para que seja possível apenas herdá-la.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Entity<T>
+    public abstract class BaseEntity<T>
+
         where T : struct
     {
         #region States
@@ -20,11 +21,11 @@ namespace Dagobah.Domain.Entities.Core
         /// </summary>
         public virtual T Id { get; protected set; }
 
-        public DateTime CreatedAt { get; protected set; }
+        public virtual DateTime CreatedAt { get; protected set; }
 
-        public DateTime? UpdatedAt { get; protected set; }
+        public virtual DateTime? UpdatedAt { get; protected set; }
 
-        public DateTime? DeletedAt { get; protected set; }
+        public virtual DateTime? DeletedAt { get; protected set; }
 
         public bool IsActive => !DeletedAt.HasValue;
 
@@ -32,27 +33,36 @@ namespace Dagobah.Domain.Entities.Core
 
         #region Behaviors
 
-        public void SetUpdated()
+        public void SetAsUpdated()
         {
             UpdatedAt = DateTime.Now;
         }
 
-        public void SetActive(bool active)
+        public void SetAsActive()
         {
-            if (active)
-                DeletedAt = default; 
-            else
-                DeletedAt = DateTime.Now;
+            DeletedAt = default;
+            SetAsUpdated();
+        }
+
+        public void SetAsInactive()
+        {
+            DeletedAt = DateTime.Now;
+            SetAsUpdated();
         }
 
         #endregion
 
         #region Constructors
 
-        public Entity()
+        public BaseEntity()
         {
-            // Ao instanciar um novo objeto, a data de criação é definida automaticamente.
             CreatedAt = DateTime.Now;
+        }
+
+        public BaseEntity(T id)
+            : this()
+        {
+            Id = id;
         }
 
         #endregion

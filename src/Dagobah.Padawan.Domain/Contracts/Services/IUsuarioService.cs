@@ -1,4 +1,4 @@
-﻿using Dagobah.Domain.Contracts.Services.Core;
+﻿using Dagobah.Domain.Contracts.Services;
 
 namespace Dagobah.Padawan.Domain.Contracts.Services
 {

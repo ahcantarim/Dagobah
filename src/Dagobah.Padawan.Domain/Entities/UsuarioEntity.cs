@@ -3,19 +3,18 @@ using System;
 
 namespace Dagobah.Padawan.Domain.Entities
 {
-    public class UsuarioEntity : Entity<int>
+    public class UsuarioEntity : 
+        BaseEntity<int>
     {
         #region States
 
-        //TODO: Avaliar se devem ser "private set" (apenas a própria classe pode controlar suas características).
+        public string Email { get; private set; }
 
-        public string Email { get; set; }
+        public string Senha { get; private set; }
 
-        public string Senha { get; set; }
+        public bool Confirmado { get; private set; }
 
-        public bool Confirmado { get; set; }
-
-        public DateTime? UltimoAcessoEm { get; set; }
+        public DateTime? UltimoAcessoEm { get; private set; }
 
         #endregion
     }

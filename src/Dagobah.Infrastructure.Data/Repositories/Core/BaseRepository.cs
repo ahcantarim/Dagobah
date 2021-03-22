@@ -1,15 +1,17 @@
-﻿using Dagobah.Domain.Contracts.Repositories.Core;
+﻿using Dagobah.Domain.Contracts.Repositories;
 using Dagobah.Infrastructure.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
-namespace Dagobah.Infrastructure.Data.Repositories
+namespace Dagobah.Infrastructure.Data.Repositories.Core
 {
     public class BaseRepository<TEntity, TId> :
         IBaseRepository<TEntity, TId>
-        where TEntity : Domain.Entities.Core.Entity<TId>
+
+        where TEntity : Domain.Entities.Core.BaseEntity<TId>
         where TId : struct
     {
         #region Attributes
@@ -36,17 +38,13 @@ namespace Dagobah.Infrastructure.Data.Repositories
             _dbSet.Add(entity);
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        public int Count(Expression<Func<TEntity, bool>> predicate = null)
         {
-            foreach (var entity in entities)
-            {
-                _dbSet.Add(entity);
-            }
-        }
+            if (predicate == null)
+                return _dbSet.Count();
+            else
+                return _dbSet.Where(predicate).Count();
 
-        public int Count()
-        {
-            return _dbSet.Count();
         }
 
         public void DeleteById(TId id)
@@ -59,20 +57,22 @@ namespace Dagobah.Infrastructure.Data.Repositories
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null)
         {
-            //if (predicate != null)
-            //{
-            //    return _dbSet.Where(predicate);
-            //}
-
-            return _dbSet.AsEnumerable();
+            if (predicate == null)
+                return _dbSet.AsEnumerable();
+            else
+                return _dbSet.Where(predicate).AsEnumerable();
         }
 
-        public IEnumerable<TEntity> GetAll(int take, int skip)
+        public IEnumerable<TEntity> GetAll(int take, int skip, Expression<Func<TEntity, bool>> predicate = null)
         {
-            //TODO: GetAll(take, skip)
-            throw new NotImplementedException();
+            var result = _dbSet.Take(take).Skip(skip);
+
+            if (predicate == null)
+                return result.AsEnumerable();
+            else
+                return result.Where(predicate).AsEnumerable();
         }
 
         public TEntity GetById(TId id)
@@ -86,7 +86,7 @@ namespace Dagobah.Infrastructure.Data.Repositories
 
             if (entity != null)
             {
-                entity.SetActive(true);
+                entity.SetAsActive();
                 _context.Update(entity);
             }
         }
@@ -97,14 +97,14 @@ namespace Dagobah.Infrastructure.Data.Repositories
 
             if (entity != null)
             {
-                entity.SetActive(false);
+                entity.SetAsInactive();
                 _context.Update(entity);
             }
         }
 
         public void Update(TEntity entity)
         {
-            entity.SetUpdated();
+            entity.SetAsUpdated();
 
             _context.Update(entity);
         }

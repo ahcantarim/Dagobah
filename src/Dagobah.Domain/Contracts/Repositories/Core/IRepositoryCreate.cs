@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace Dagobah.Domain.Contracts.Repositories.Core
+﻿namespace Dagobah.Domain.Contracts.Repositories.Core
 {
     public interface IRepositoryCreate<in TEntity, TId>
-        where TEntity : Entities.Core.Entity<TId>
+
+        where TEntity : Entities.Core.BaseEntity<TId>
         where TId : struct
     {
         void Add(TEntity entity);
-
-        void AddRange(IEnumerable<TEntity> entities);
     }
 }

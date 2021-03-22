@@ -1,6 +1,9 @@
-﻿namespace Dagobah.Domain.Contracts.UnitsOfWork
+﻿using Dagobah.Domain.Contracts.UnitsOfWork.Core;
+
+namespace Dagobah.Domain.Contracts.UnitsOfWork
 {
-    public interface IBaseUnitOfWork : Core.IUnitOfWork
+    public interface IBaseUnitOfWork : 
+        IUnitOfWork
     {
     }
 }

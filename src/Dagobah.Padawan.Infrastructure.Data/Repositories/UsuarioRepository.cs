@@ -1,4 +1,4 @@
-﻿using Dagobah.Infrastructure.Data.Repositories;
+﻿using Dagobah.Infrastructure.Data.Repositories.Core;
 using Dagobah.Padawan.Domain.Contracts.Repositories;
 using Dagobah.Padawan.Domain.Entities;
 using System.Data.Entity;
@@ -9,8 +9,8 @@ namespace Dagobah.Padawan.Infrastructure.Data.Repositories
         BaseRepository<UsuarioEntity, int>, 
         IUsuarioRepository
     {
-        public UsuarioRepository(DbContext context)
-            : base(context)
+        public UsuarioRepository(DbContext context) : 
+            base(context)
         {
         }
     }

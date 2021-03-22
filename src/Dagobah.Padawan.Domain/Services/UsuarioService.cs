@@ -1,4 +1,4 @@
-﻿using Dagobah.Domain.Services;
+﻿using Dagobah.Domain.Services.Core;
 using Dagobah.Padawan.Domain.Contracts.Repositories;
 using Dagobah.Padawan.Domain.Contracts.Services;
 using Dagobah.Padawan.Domain.Entities;
@@ -9,18 +9,11 @@ namespace Dagobah.Padawan.Domain.Services
         BaseService<UsuarioEntity, int>,
         IUsuarioService
     {
-        #region Attributes
-
-        private readonly IUsuarioRepository _repository;
-
-        #endregion
-
         #region Constructors
 
-        public UsuarioService(IUsuarioRepository repository)
-            : base(repository)
+        public UsuarioService(IUsuarioRepository repository) : 
+            base(repository)
         {
-            _repository = repository;
         }
 
         #endregion

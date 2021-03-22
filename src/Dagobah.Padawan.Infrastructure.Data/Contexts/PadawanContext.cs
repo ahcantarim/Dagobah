@@ -4,7 +4,8 @@ using System.Data.Entity;
 
 namespace Dagobah.Padawan.Infrastructure.Data.Contexts
 {
-    public class PadawanContext : BaseContext
+    public class PadawanContext : 
+        BaseContext
     {
         #region Properties
 

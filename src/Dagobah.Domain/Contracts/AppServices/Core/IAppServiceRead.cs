@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Dagobah.Domain.Contracts.Repositories.Core
+namespace Dagobah.Domain.Contracts.AppServices.Core
 {
-    public interface IRepositoryRead<TEntity, in TId>
+    public interface IAppServiceRead<TEntity, in TId>
 
         where TEntity : Entities.Core.BaseEntity<TId>
         where TId : struct
