@@ -31,8 +31,11 @@ namespace Dagobah.Padawan.Domain.Entities
 
         #region Constructors
 
-        public NotaCorretagemDetalheEntity(TipoOperacaoCorretagem tipoOperacao, string titulo, int quantidade, decimal precoLiquidacao)
+        public NotaCorretagemDetalheEntity(NotaCorretagemEntity notaCorretagem ,TipoOperacaoCorretagem tipoOperacao, string titulo, int quantidade, decimal precoLiquidacao)
         {
+            NotaCorretagem = notaCorretagem;
+            NotaCorretagemId = notaCorretagem.Id;
+
             TipoOperacao = tipoOperacao;
             Titulo = titulo;
             Quantidade = quantidade;

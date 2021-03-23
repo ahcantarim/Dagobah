@@ -49,7 +49,7 @@ namespace Dagobah.Padawan.Infrastructure.Data.Mappings
             #region References
 
             HasRequired(c => c.NotaCorretagem)
-                .WithMany(c => c.NotaCorretagemDetalheEntities)
+                .WithMany(c => c.NotaCorretagemDetalheCollection)
                 .HasForeignKey(c => c.NotaCorretagemId);
 
             #endregion
