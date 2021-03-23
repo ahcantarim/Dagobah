@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Contracts\Repositories\IUsuarioRepository.cs" />
-    <Compile Include="Contracts\Services\IUsuarioService.cs" />
+    <Compile Include="Contracts\Services\IUsuarioDomainService.cs" />
     <Compile Include="Entities\UsuarioEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\UsuarioService.cs" />
+    <Compile Include="Services\UsuarioDomainService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dagobah.Domain\Dagobah.Domain.csproj">

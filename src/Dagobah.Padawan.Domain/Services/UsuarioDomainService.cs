@@ -5,13 +5,13 @@ using Dagobah.Padawan.Domain.Entities;
 
 namespace Dagobah.Padawan.Domain.Services
 {
-    public class UsuarioService :
-        BaseService<UsuarioEntity, int>,
-        IUsuarioService
+    public class UsuarioDomainService :
+        BaseDomainService<UsuarioEntity, int>,
+        IUsuarioDomainService
     {
         #region Constructors
 
-        public UsuarioService(IUsuarioRepository repository) : 
+        public UsuarioDomainService(IUsuarioRepository repository) : 
             base(repository)
         {
         }

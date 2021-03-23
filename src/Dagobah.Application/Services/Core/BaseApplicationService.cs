@@ -1,26 +1,26 @@
-﻿using Dagobah.Domain.Contracts.AppServices;
-using Dagobah.Domain.Contracts.Services;
+﻿using Dagobah.Domain.Contracts.ApplicationServices;
+using Dagobah.Domain.Contracts.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Dagobah.Application.AppServices.Core
+namespace Dagobah.Application.Services.Core
 {
-    public class BaseAppService<TEntity, TId> :
-        IBaseAppService<TEntity, TId>
+    public class BaseApplicationService<TEntity, TId> :
+        IBaseApplicationService<TEntity, TId>
 
         where TEntity : Domain.Entities.Core.BaseEntity<TId>
         where TId : struct
     {
         #region Attributes
 
-        private readonly IBaseService<TEntity, TId> _domainService;
+        private readonly IBaseDomainService<TEntity, TId> _domainService;
 
         #endregion
 
         #region Constructors
 
-        public BaseAppService(IBaseService<TEntity, TId> domainService)
+        public BaseApplicationService(IBaseDomainService<TEntity, TId> domainService)
         {
             _domainService = domainService;
         }

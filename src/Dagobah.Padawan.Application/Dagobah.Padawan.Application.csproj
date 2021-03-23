@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\AppServices\IUsuarioAppService.cs" />
+    <Compile Include="Contracts\Services\IUsuarioApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UsuarioApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dagobah.Application\Dagobah.Application.csproj">
+      <Project>{63CB7D45-584F-4A01-930F-CE73D427A1A2}</Project>
+      <Name>Dagobah.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dagobah.Domain\Dagobah.Domain.csproj">
       <Project>{9E7DC309-A8C0-4C73-8107-8891BCFADB68}</Project>
       <Name>Dagobah.Domain</Name>

@@ -1,6 +1,6 @@
-﻿namespace Dagobah.Domain.Contracts.AppServices.Core
+﻿namespace Dagobah.Domain.Contracts.ApplicationServices.Core
 {
-    public interface IAppServiceDelete<in TId>
+    public interface IApplicationServiceDelete<in TId>
 
         where TId : struct
     {

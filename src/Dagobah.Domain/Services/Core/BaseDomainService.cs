@@ -1,13 +1,13 @@
 ﻿using Dagobah.Domain.Contracts.Repositories;
-using Dagobah.Domain.Contracts.Services;
+using Dagobah.Domain.Contracts.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Dagobah.Domain.Services.Core
 {
-    public class BaseService<TEntity, TId> :
-        IBaseService<TEntity, TId>
+    public class BaseDomainService<TEntity, TId> :
+        IBaseDomainService<TEntity, TId>
 
         where TEntity : Entities.Core.BaseEntity<TId>
         where TId : struct
@@ -20,7 +20,7 @@ namespace Dagobah.Domain.Services.Core
 
         #region Constructors
 
-        public BaseService(IBaseRepository<TEntity, TId> repository)
+        public BaseDomainService(IBaseRepository<TEntity, TId> repository)
         {
             _repository = repository;
         }

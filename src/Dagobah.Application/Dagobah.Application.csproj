@@ -41,8 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppServices\Core\BaseAppService.cs" />
-    <Compile Include="AppServices\UsuarioAppService.cs" />
+    <Compile Include="Services\Core\BaseApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -50,14 +49,6 @@
     <ProjectReference Include="..\Dagobah.Domain\Dagobah.Domain.csproj">
       <Project>{9e7dc309-a8c0-4c73-8107-8891bcfadb68}</Project>
       <Name>Dagobah.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dagobah.Padawan.Application\Dagobah.Padawan.Application.csproj">
-      <Project>{A9C662D8-B84E-4CC7-AA81-16C905AA925D}</Project>
-      <Name>Dagobah.Padawan.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dagobah.Padawan.Domain\Dagobah.Padawan.Domain.csproj">
-      <Project>{4140DC65-DF23-4F77-80F0-28D882C6B9C5}</Project>
-      <Name>Dagobah.Padawan.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
