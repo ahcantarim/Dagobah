@@ -31,10 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Repositories\INotaCorretagemDetalheRepository.cs" />
+    <Compile Include="Contracts\Repositories\INotaCorretagemRepository.cs" />
     <Compile Include="Contracts\Repositories\IUsuarioRepository.cs" />
+    <Compile Include="Contracts\Services\INotaCorretagemDetalheDomainService.cs" />
+    <Compile Include="Contracts\Services\INotaCorretagemDomainService.cs" />
     <Compile Include="Contracts\Services\IUsuarioDomainService.cs" />
+    <Compile Include="Entities\NotaCorretagemDetalheEntity.cs" />
+    <Compile Include="Entities\NotaCorretagemEntity.cs" />
     <Compile Include="Entities\UsuarioEntity.cs" />
+    <Compile Include="Enumerations\TipoOperacaoCorretagem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NotaCorretagemDetalheDomainService.cs" />
+    <Compile Include="Services\NotaCorretagemDomainService.cs" />
     <Compile Include="Services\UsuarioDomainService.cs" />
   </ItemGroup>
   <ItemGroup>
