@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dagobah.Infrastructure.Cros
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dagobah.Infrastructure.CrossCutting.Resources", "Dagobah.Infrastructure.CrossCutting.Resources\Dagobah.Infrastructure.CrossCutting.Resources.csproj", "{DEBA658B-2931-49E5-BF7F-17B65EE5E271}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dagobah.Padawan.Presentation.AspNetCore.WebApplication", "Dagobah.Padawan.Presentation.AspNetCore.WebApplication\Dagobah.Padawan.Presentation.AspNetCore.WebApplication.csproj", "{527BCAE0-3862-4BF3-AA5A-30CCA4CF21B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{DEBA658B-2931-49E5-BF7F-17B65EE5E271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEBA658B-2931-49E5-BF7F-17B65EE5E271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEBA658B-2931-49E5-BF7F-17B65EE5E271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527BCAE0-3862-4BF3-AA5A-30CCA4CF21B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527BCAE0-3862-4BF3-AA5A-30CCA4CF21B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527BCAE0-3862-4BF3-AA5A-30CCA4CF21B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527BCAE0-3862-4BF3-AA5A-30CCA4CF21B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{19B3280C-7D77-4C42-A9E4-DDBAAC36C49D} = {076EE707-E7CD-4855-9645-78C31748E0F9}
 		{C2CCB901-5ACF-4E80-9232-186FA02787D1} = {53B7C471-5001-40B7-8C48-AB1736EB39BF}
 		{DEBA658B-2931-49E5-BF7F-17B65EE5E271} = {53B7C471-5001-40B7-8C48-AB1736EB39BF}
+		{527BCAE0-3862-4BF3-AA5A-30CCA4CF21B2} = {4ECE0ADB-CA1F-439B-8B71-53CDFAEB2FAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DFC3131-32AD-4B5D-BA3A-E0124449129D}
