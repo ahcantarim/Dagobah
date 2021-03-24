@@ -1,4 +1,5 @@
 ﻿using Dagobah.Domain.ValueObjects.Core;
+using System;
 using System.Collections.Generic;
 
 namespace Dagobah.Padawan.Domain.ValueObjects
@@ -7,21 +8,21 @@ namespace Dagobah.Padawan.Domain.ValueObjects
     {
         #region States
 
-        public decimal? Corretagem { get; private set; }
+        public double? Corretagem { get; private set; }
 
-        public decimal? Liquidacao { get; private set; }
+        public double? Liquidacao { get; private set; }
 
-        public decimal? Emolumentos { get; private set; }
+        public double? Emolumentos { get; private set; }
 
-        public decimal? Outros { get; private set; }
+        public double? Outros { get; private set; }
 
-        public decimal Total => Corretagem.Value + Liquidacao.Value + Emolumentos.Value + Outros.Value;
+        public double Total => Math.Round(Corretagem.Value + Liquidacao.Value + Emolumentos.Value + Outros.Value, 2);
 
         #endregion
 
         #region Constructors
 
-        public TaxaOperacaoValueObject(decimal corretagem, decimal liquidacao, decimal emolumentos, decimal outros)
+        public TaxaOperacaoValueObject(double corretagem, double liquidacao, double emolumentos, double outros)
         {
             Corretagem = corretagem;
             Liquidacao = liquidacao;
@@ -29,7 +30,7 @@ namespace Dagobah.Padawan.Domain.ValueObjects
             Outros = outros;
         }
 
-        public TaxaOperacaoValueObject(decimal liquidacao, decimal emolumentos) :
+        public TaxaOperacaoValueObject(double liquidacao, double emolumentos) :
             this(default, liquidacao, emolumentos, default)
         {
         }

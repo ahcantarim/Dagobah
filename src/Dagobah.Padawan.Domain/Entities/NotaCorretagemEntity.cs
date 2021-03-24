@@ -18,72 +18,48 @@ namespace Dagobah.Padawan.Domain.Entities
 
         public NotaCorretagemDetalheCollection NotaCorretagemDetalheCollection { get; set; }
 
+        public double PrecoTotal => Math.Round(NotaCorretagemDetalheCollection.Sum(x => x.PrecoTotal), 2);
+
+        public double CustoAquisicaoTotal => Math.Round(NotaCorretagemDetalheCollection.Sum(x => x.CustoAquisicao), 2);
+
         #endregion
 
         #region Behaviors
 
-        public void AdicionarOperacao(TipoOperacaoCorretagem tipoOperacao, string titulo, int quantidade, decimal precoLiquidacao)
+        public void AdicionarOperacao(TipoOperacaoCorretagem tipoOperacao, string titulo, int quantidade, double precoLiquidacao)
         {
-            var notaCorretagemDetalhe = new NotaCorretagemDetalheEntity(this, tipoOperacao, titulo, quantidade, precoLiquidacao);
-            NotaCorretagemDetalheCollection.Add(notaCorretagemDetalhe);
-        }
+            //TODO: Adicionar validações (operação existente, título preenchido, quantidade válida, preço válido, etc).
 
-        public decimal CalcularPercentualProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo)
-        {
-            var operacaoTitulo = NotaCorretagemDetalheCollection.Where(x => x.TipoOperacao == tipoOperacao && x.Titulo == titulo)
-                                                                .FirstOrDefault();
+            titulo = titulo.ToUpper();
 
-            var operacaoNotaPrecoTotal = NotaCorretagemDetalheCollection.Sum(x => x.PrecoTotal);
+            var operacao = NotaCorretagemDetalheCollection.ToList()
+                                                          .Find(x => x.TipoOperacao == tipoOperacao && x.Titulo == titulo);
 
-            if (operacaoNotaPrecoTotal <= 0)
-                return 0;
-
-            return operacaoTitulo.PrecoTotal / operacaoNotaPrecoTotal;  //TODO: Math.Round
-        }
-
-        public decimal CalcularTaxaProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo, TipoTaxaOperacao tipoTaxa)
-        {
-            var percentualProporcionalTitulo = CalcularPercentualProporcional(tipoOperacao, titulo);
-
-            decimal? valorTaxaConsiderar = 0;
-
-            switch (tipoTaxa)
+            if (operacao == null)
             {
-                case TipoTaxaOperacao.Corretagem:
-                    valorTaxaConsiderar = TaxaOperacao.Corretagem.Value;
-                    break;
-
-                case TipoTaxaOperacao.Liquidacao:
-                    valorTaxaConsiderar = TaxaOperacao.Liquidacao.Value;
-                    break;
-
-                case TipoTaxaOperacao.Emolumentos:
-                    valorTaxaConsiderar = TaxaOperacao.Emolumentos.Value;
-                    break;
-
-                case TipoTaxaOperacao.Outros:
-                    valorTaxaConsiderar = TaxaOperacao.Outros.Value;
-                    break;
-
-                default:
-                    break;
+                operacao = new NotaCorretagemDetalheEntity(this, tipoOperacao, titulo, quantidade, precoLiquidacao);
+                NotaCorretagemDetalheCollection.Add(operacao); 
             }
-
-            return percentualProporcionalTitulo * valorTaxaConsiderar.Value; //TODO: Math.Round
+            else
+            {
+                operacao.AtualizarQuantidade(tipoOperacao, quantidade); //TODO: Atualizar CustoAquisicao também.
+            }
         }
+
+        //TODO: Métodos para retornar % e Taxa de um título na nota (pode ter várias operações).
 
         #endregion
 
         #region Constructors
 
-        public NotaCorretagemEntity(DateTime data, decimal taxaCorretagem, decimal taxaLiquidacao, decimal taxaEmolumentos, decimal taxaOutros)
+        public NotaCorretagemEntity(DateTime data, double taxaCorretagem, double taxaLiquidacao, double taxaEmolumentos, double taxaOutros)
         {
             Data = data;
             TaxaOperacao = new TaxaOperacaoValueObject(taxaCorretagem, taxaLiquidacao, taxaEmolumentos, taxaOutros);
             NotaCorretagemDetalheCollection = new NotaCorretagemDetalheCollection();
         }
 
-        public NotaCorretagemEntity(DateTime data, decimal taxaLiquidacao, decimal taxaEmolumentos) :
+        public NotaCorretagemEntity(DateTime data, double taxaLiquidacao, double taxaEmolumentos) :
             this(data, default, taxaLiquidacao, taxaEmolumentos, default)
         {
         }
