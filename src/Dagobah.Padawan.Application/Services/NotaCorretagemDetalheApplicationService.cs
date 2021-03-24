@@ -2,12 +2,11 @@
 using Dagobah.Padawan.Application.Contracts.Services;
 using Dagobah.Padawan.Domain.Contracts.Services;
 using Dagobah.Padawan.Domain.Entities;
-using System;
 
 namespace Dagobah.Padawan.Application.Services
 {
     public class NotaCorretagemDetalheApplicationService :
-        BaseApplicationService<NotaCorretagemDetalheEntity, Guid>,
+        BaseApplicationService<NotaCorretagemDetalheEntity, int>,
         INotaCorretagemDetalheApplicationService
     {
         #region Constructors

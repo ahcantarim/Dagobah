@@ -1,15 +1,14 @@
 ﻿using Dagobah.Domain.Entities.Core;
 using Dagobah.Padawan.Domain.Enumerations;
-using System;
 
 namespace Dagobah.Padawan.Domain.Entities
 {
     public class NotaCorretagemDetalheEntity :
-        BaseEntity<Guid>
+        BaseEntity<int>
     {
         #region States
 
-        public Guid NotaCorretagemId { get; private set; }
+        public int NotaCorretagemId { get; private set; }
 
         public NotaCorretagemEntity NotaCorretagem { get; private set; }
 

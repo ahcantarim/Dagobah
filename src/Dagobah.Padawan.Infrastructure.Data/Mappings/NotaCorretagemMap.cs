@@ -23,6 +23,7 @@ namespace Dagobah.Padawan.Infrastructure.Data.Mappings
 
             Property(c => c.Id)
                 .HasColumnName("id")
+                .HasColumnType("int")
                 .IsRequired();
 
             Property(c => c.Data)
@@ -30,15 +31,25 @@ namespace Dagobah.Padawan.Infrastructure.Data.Mappings
                 .HasColumnName("datetime")
                 .IsRequired();
 
-            Property(c => c.TaxaLiquidacao)
+            Property(c => c.TaxaOperacao.Corretagem)
+              .HasColumnName("taxaCorretagem")
+              .HasColumnType("decimal")
+              .IsRequired();
+
+            Property(c => c.TaxaOperacao.Liquidacao)
                 .HasColumnName("taxaLiquidacao")
                 .HasColumnType("decimal")
                 .IsRequired();
 
-            Property(c => c.TaxaEmolumentos)
+            Property(c => c.TaxaOperacao.Emolumentos)
                 .HasColumnName("taxaEmolumentos")
                 .HasColumnType("decimal")
                 .IsRequired();
+
+            Property(c => c.TaxaOperacao.Outros)
+              .HasColumnName("taxaOutros")
+              .HasColumnType("decimal")
+              .IsRequired();
 
             #endregion
 

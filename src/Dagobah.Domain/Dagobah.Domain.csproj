@@ -52,6 +52,7 @@
     <Compile Include="Entities\Core\BaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Core\BaseDomainService.cs" />
+    <Compile Include="ValueObjects\Core\BaseValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Collections\Core\README.md" />

@@ -23,6 +23,7 @@ namespace Dagobah.Padawan.Infrastructure.Data.Mappings
 
             Property(c => c.Id)
                 .HasColumnName("id")
+                .HasColumnType("int")
                 .IsRequired();
 
             Property(c => c.TipoOperacao)

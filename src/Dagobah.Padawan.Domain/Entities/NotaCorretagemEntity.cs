@@ -1,27 +1,20 @@
 ﻿using Dagobah.Domain.Entities.Core;
 using Dagobah.Padawan.Domain.Collections;
 using Dagobah.Padawan.Domain.Enumerations;
+using Dagobah.Padawan.Domain.ValueObjects;
 using System;
 using System.Linq;
 
 namespace Dagobah.Padawan.Domain.Entities
 {
     public class NotaCorretagemEntity :
-        BaseEntity<Guid>
+        BaseEntity<int>
     {
         #region States
 
         public DateTime Data { get; private set; }
 
-        public decimal? TaxaCorretagem { get; private set; }
-
-        public decimal? TaxaLiquidacao { get; private set; }
-
-        public decimal? TaxaEmolumentos { get; private set; }
-
-        public decimal? TaxaOutros { get; private set; }
-
-        public decimal TaxaTotal => TaxaCorretagem.Value + TaxaLiquidacao.Value + TaxaEmolumentos.Value + TaxaOutros.Value;
+        public TaxaOperacaoValueObject TaxaOperacao { get; private set; }
 
         public NotaCorretagemDetalheCollection NotaCorretagemDetalheCollection { get; set; }
 
@@ -45,42 +38,38 @@ namespace Dagobah.Padawan.Domain.Entities
             if (operacaoNotaPrecoTotal <= 0)
                 return 0;
 
-            return operacaoTitulo.PrecoTotal / operacaoNotaPrecoTotal;
+            return operacaoTitulo.PrecoTotal / operacaoNotaPrecoTotal;  //TODO: Math.Round
         }
 
-        public decimal CalcularTaxaCorretagemProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo)
+        public decimal CalcularTaxaProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo, TipoTaxaOperacao tipoTaxa)
         {
             var percentualProporcionalTitulo = CalcularPercentualProporcional(tipoOperacao, titulo);
 
-            return percentualProporcionalTitulo * TaxaCorretagem.Value;
-        }
+            decimal? valorTaxaConsiderar = 0;
 
-        public decimal CalcularTaxaLiquidacaoProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo)
-        {
-            var percentualProporcionalTitulo = CalcularPercentualProporcional(tipoOperacao, titulo);
+            switch (tipoTaxa)
+            {
+                case TipoTaxaOperacao.Corretagem:
+                    valorTaxaConsiderar = TaxaOperacao.Corretagem.Value;
+                    break;
 
-            return percentualProporcionalTitulo * TaxaLiquidacao.Value;
-        }
+                case TipoTaxaOperacao.Liquidacao:
+                    valorTaxaConsiderar = TaxaOperacao.Liquidacao.Value;
+                    break;
 
-        public decimal CalcularTaxaEmolumentosProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo)
-        {
-            var percentualProporcionalTitulo = CalcularPercentualProporcional(tipoOperacao, titulo);
+                case TipoTaxaOperacao.Emolumentos:
+                    valorTaxaConsiderar = TaxaOperacao.Emolumentos.Value;
+                    break;
 
-            return percentualProporcionalTitulo * TaxaEmolumentos.Value;
-        }
+                case TipoTaxaOperacao.Outros:
+                    valorTaxaConsiderar = TaxaOperacao.Outros.Value;
+                    break;
 
-        public decimal CalcularTaxaOutrosProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo)
-        {
-            var percentualProporcionalTitulo = CalcularPercentualProporcional(tipoOperacao, titulo);
+                default:
+                    break;
+            }
 
-            return percentualProporcionalTitulo * TaxaOutros.Value;
-        }
-
-        public decimal CalcularTaxaTotalProporcional(TipoOperacaoCorretagem tipoOperacao, string titulo)
-        {
-            var percentualProporcionalTitulo = CalcularPercentualProporcional(tipoOperacao, titulo);
-
-            return percentualProporcionalTitulo * TaxaTotal;
+            return percentualProporcionalTitulo * valorTaxaConsiderar.Value; //TODO: Math.Round
         }
 
         #endregion
@@ -90,11 +79,7 @@ namespace Dagobah.Padawan.Domain.Entities
         public NotaCorretagemEntity(DateTime data, decimal taxaCorretagem, decimal taxaLiquidacao, decimal taxaEmolumentos, decimal taxaOutros)
         {
             Data = data;
-            TaxaCorretagem = taxaCorretagem;
-            TaxaLiquidacao = taxaLiquidacao;
-            TaxaEmolumentos = taxaEmolumentos;
-            TaxaOutros = taxaOutros;
-
+            TaxaOperacao = new TaxaOperacaoValueObject(taxaCorretagem, taxaLiquidacao, taxaEmolumentos, taxaOutros);
             NotaCorretagemDetalheCollection = new NotaCorretagemDetalheCollection();
         }
 
