@@ -49,7 +49,7 @@ namespace Dagobah.Padawan.Domain.UnitTest.Services
 
             //_domainService.Add(notaCorretagem);
 
-            var somaTaxasProporcionais = notaCorretagem.NotaCorretagemDetalheCollection.Sum(x => x.TaxaOperacaoProporcional.Total);
+            var somaTaxasProporcionais = notaCorretagem.NotaCorretagemOperacaoCollection.Sum(x => x.TaxaOperacaoProporcional.Total);
             somaTaxasProporcionais = Math.Round(somaTaxasProporcionais, 2);
 
             #endregion
@@ -91,7 +91,7 @@ namespace Dagobah.Padawan.Domain.UnitTest.Services
 
             foreach (var notaCorretagemAtual in notasCorretagem2019)
             {
-                var somaTaxasProporcionais = notaCorretagemAtual.NotaCorretagemDetalheCollection.Sum(x => x.TaxaOperacaoProporcional.Total);
+                var somaTaxasProporcionais = notaCorretagemAtual.NotaCorretagemOperacaoCollection.Sum(x => x.TaxaOperacaoProporcional.Total);
                 somaTaxasProporcionais = Math.Round(somaTaxasProporcionais, 2);
 
                 var custoTotalNotaAtual = custosTotais.First(x => x.Key == notaCorretagemAtual);

@@ -12,9 +12,9 @@ namespace Dagobah.Padawan.Infrastructure.Data.Contexts
         // REM: Declarar um DbSet para cada Entity do seu Domain.
         //      Cada DbSet<T> representa uma tabela do banco de dados.
 
-        public DbSet<NotaCorretagemDetalheEntity> NotaCorretagemDetalheEntities { get; set; }
-
         public DbSet<NotaCorretagemEntity> NotaCorretagemEntities { get; set; }
+
+        public DbSet<NotaCorretagemOperacaoEntity> NotaCorretagemOperacaoEntities { get; set; }
 
         public DbSet<UsuarioEntity> UsuarioEntities { get; set; }
 
@@ -29,9 +29,9 @@ namespace Dagobah.Padawan.Infrastructure.Data.Contexts
             // REM: Adicionar a configuração de mapeamento para cada Entity do seu Domain.
             //      Cada mapeamento deve herdar de EntityTypeConfiguration<T> e ser criado no diretório Mappings.
 
-            modelBuilder.Configurations.Add(new Mappings.NotaCorretagemDetalheMap());
-
             modelBuilder.Configurations.Add(new Mappings.NotaCorretagemMap());
+
+            modelBuilder.Configurations.Add(new Mappings.NotaCorretagemOperacaoMap());
 
             modelBuilder.Configurations.Add(new Mappings.UsuarioMap());
 

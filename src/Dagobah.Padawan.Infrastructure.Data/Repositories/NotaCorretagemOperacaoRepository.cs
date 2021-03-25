@@ -5,11 +5,11 @@ using System.Data.Entity;
 
 namespace Dagobah.Padawan.Infrastructure.Data.Repositories
 {
-    public class NotaCorretagemDetalheRepository :
-         BaseRepository<NotaCorretagemDetalheEntity, int>,
-         INotaCorretagemDetalheRepository
+    public class NotaCorretagemOperacaoRepository :
+         BaseRepository<NotaCorretagemOperacaoEntity, int>,
+         INotaCorretagemOperacaoRepository
     {
-        public NotaCorretagemDetalheRepository(DbContext context) :
+        public NotaCorretagemOperacaoRepository(DbContext context) :
             base(context)
         {
         }

@@ -2,14 +2,14 @@
 
 namespace Dagobah.Padawan.Infrastructure.Data.Mappings
 {
-    public class NotaCorretagemDetalheMap :
-        EntityTypeConfiguration<Domain.Entities.NotaCorretagemDetalheEntity>
+    public class NotaCorretagemOperacaoMap :
+        EntityTypeConfiguration<Domain.Entities.NotaCorretagemOperacaoEntity>
     {
-        public NotaCorretagemDetalheMap()
+        public NotaCorretagemOperacaoMap()
         {
             #region Table
 
-            ToTable("notaCorretagemDetalhe");
+            ToTable("notaCorretagemOperacao");
 
             #endregion
 
@@ -50,7 +50,7 @@ namespace Dagobah.Padawan.Infrastructure.Data.Mappings
             #region References
 
             HasRequired(c => c.NotaCorretagem)
-                .WithMany(c => c.NotaCorretagemDetalheCollection)
+                .WithMany(c => c.NotaCorretagemOperacaoCollection)
                 .HasForeignKey(c => c.NotaCorretagemId);
 
             #endregion

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +44,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Injectors\PadawanInjector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dagobah.Application\Dagobah.Application.csproj">
+      <Project>{63CB7D45-584F-4A01-930F-CE73D427A1A2}</Project>
+      <Name>Dagobah.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dagobah.Domain\Dagobah.Domain.csproj">
+      <Project>{9E7DC309-A8C0-4C73-8107-8891BCFADB68}</Project>
+      <Name>Dagobah.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dagobah.Infrastructure.CrossCutting.IoC\Dagobah.Infrastructure.CrossCutting.IoC.csproj">
+      <Project>{C2CCB901-5ACF-4E80-9232-186FA02787D1}</Project>
+      <Name>Dagobah.Infrastructure.CrossCutting.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dagobah.Infrastructure.Data\Dagobah.Infrastructure.Data.csproj">
+      <Project>{2E57DF64-D728-433F-AC33-49D719858A11}</Project>
+      <Name>Dagobah.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dagobah.Padawan.Application\Dagobah.Padawan.Application.csproj">
+      <Project>{A9C662D8-B84E-4CC7-AA81-16C905AA925D}</Project>
+      <Name>Dagobah.Padawan.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dagobah.Padawan.Domain\Dagobah.Padawan.Domain.csproj">
+      <Project>{4140DC65-DF23-4F77-80F0-28D882C6B9C5}</Project>
+      <Name>Dagobah.Padawan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dagobah.Padawan.Infrastructure.Data\Dagobah.Padawan.Infrastructure.Data.csproj">
+      <Project>{A9E2C0B4-C759-4CF2-98F2-96BED307D090}</Project>
+      <Name>Dagobah.Padawan.Infrastructure.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

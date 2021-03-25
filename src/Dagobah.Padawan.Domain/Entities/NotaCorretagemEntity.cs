@@ -16,11 +16,11 @@ namespace Dagobah.Padawan.Domain.Entities
 
         public TaxaOperacaoValueObject TaxaOperacao { get; private set; }
 
-        public NotaCorretagemDetalheCollection NotaCorretagemDetalheCollection { get; set; }
+        public NotaCorretagemOperacaoCollection NotaCorretagemOperacaoCollection { get; set; }
 
-        public double PrecoTotal => Math.Round(NotaCorretagemDetalheCollection.Sum(x => x.PrecoTotal), 2);
+        public double PrecoTotal => Math.Round(NotaCorretagemOperacaoCollection.Sum(x => x.PrecoTotal), 2);
 
-        public double CustoAquisicaoTotal => Math.Round(NotaCorretagemDetalheCollection.Sum(x => x.CustoAquisicao), 2);
+        public double CustoAquisicaoTotal => Math.Round(NotaCorretagemOperacaoCollection.Sum(x => x.CustoAquisicao), 2);
 
         #endregion
 
@@ -32,13 +32,13 @@ namespace Dagobah.Padawan.Domain.Entities
 
             titulo = titulo.ToUpper();
 
-            var operacao = NotaCorretagemDetalheCollection.ToList()
+            var operacao = NotaCorretagemOperacaoCollection.ToList()
                                                           .Find(x => x.TipoOperacao == tipoOperacao && x.Titulo == titulo);
 
             if (operacao == null)
             {
-                operacao = new NotaCorretagemDetalheEntity(this, tipoOperacao, titulo, quantidade, precoLiquidacao);
-                NotaCorretagemDetalheCollection.Add(operacao); 
+                operacao = new NotaCorretagemOperacaoEntity(this, tipoOperacao, titulo, quantidade, precoLiquidacao);
+                NotaCorretagemOperacaoCollection.Add(operacao); 
             }
             else
             {
@@ -56,7 +56,7 @@ namespace Dagobah.Padawan.Domain.Entities
         {
             Data = data;
             TaxaOperacao = new TaxaOperacaoValueObject(taxaCorretagem, taxaLiquidacao, taxaEmolumentos, taxaOutros);
-            NotaCorretagemDetalheCollection = new NotaCorretagemDetalheCollection();
+            NotaCorretagemOperacaoCollection = new NotaCorretagemOperacaoCollection();
         }
 
         public NotaCorretagemEntity(DateTime data, double taxaLiquidacao, double taxaEmolumentos) :

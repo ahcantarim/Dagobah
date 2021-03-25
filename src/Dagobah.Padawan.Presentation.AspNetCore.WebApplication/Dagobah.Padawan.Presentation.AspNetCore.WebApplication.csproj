@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dagobah.Padawan.Infrastructure.CrossCutting.IoC\Dagobah.Padawan.Infrastructure.CrossCutting.IoC.csproj" />
+  </ItemGroup>
+
 </Project>

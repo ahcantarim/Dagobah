@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Dagobah.Padawan.Domain.Entities
 {
-    public class NotaCorretagemDetalheEntity :
+    public class NotaCorretagemOperacaoEntity :
         BaseEntity<int>
     {
         #region States
@@ -50,7 +50,7 @@ namespace Dagobah.Padawan.Domain.Entities
         {
             get
             {
-                var precoTotalNotaCorretagem = NotaCorretagem.NotaCorretagemDetalheCollection?.Sum(x => x.PrecoTotal);
+                var precoTotalNotaCorretagem = NotaCorretagem.NotaCorretagemOperacaoCollection?.Sum(x => x.PrecoTotal);
 
                 if (precoTotalNotaCorretagem <= 0)
                     return 0;
@@ -98,7 +98,7 @@ namespace Dagobah.Padawan.Domain.Entities
 
         #region Constructors
 
-        public NotaCorretagemDetalheEntity(NotaCorretagemEntity notaCorretagem, TipoOperacaoCorretagem tipoOperacao, string titulo, int quantidade, double precoLiquidacao)
+        public NotaCorretagemOperacaoEntity(NotaCorretagemEntity notaCorretagem, TipoOperacaoCorretagem tipoOperacao, string titulo, int quantidade, double precoLiquidacao)
         {
             NotaCorretagem = notaCorretagem;
             NotaCorretagemId = notaCorretagem.Id;

@@ -5,13 +5,13 @@ using Dagobah.Padawan.Domain.Entities;
 
 namespace Dagobah.Padawan.Domain.Services
 {
-    public class NotaCorretagemDetalheDomainService :
-        BaseDomainService<NotaCorretagemDetalheEntity, int>,
-        INotaCorretagemDetalheDomainService
+    public class NotaCorretagemOperacaoDomainService :
+        BaseDomainService<NotaCorretagemOperacaoEntity, int>,
+        INotaCorretagemOperacaoDomainService
     {
         #region Constructors
 
-        public NotaCorretagemDetalheDomainService(INotaCorretagemDetalheRepository repository) :
+        public NotaCorretagemOperacaoDomainService(INotaCorretagemOperacaoRepository repository) :
             base(repository)
         {
         }
