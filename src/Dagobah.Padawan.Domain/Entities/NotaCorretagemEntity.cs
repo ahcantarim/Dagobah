@@ -18,9 +18,9 @@ namespace Dagobah.Padawan.Domain.Entities
 
         public NotaCorretagemOperacaoCollection NotaCorretagemOperacaoCollection { get; set; }
 
-        public double PrecoTotal => Math.Round(NotaCorretagemOperacaoCollection.Sum(x => x.PrecoTotal), 2);
+        public double PrecoTotal => NotaCorretagemOperacaoCollection.Sum(x => x.PrecoTotal);
 
-        public double CustoAquisicaoTotal => Math.Round(NotaCorretagemOperacaoCollection.Sum(x => x.CustoAquisicao), 2);
+        public double CustoAquisicaoTotal => NotaCorretagemOperacaoCollection.Sum(x => x.CustoAquisicao);
 
         #endregion
 

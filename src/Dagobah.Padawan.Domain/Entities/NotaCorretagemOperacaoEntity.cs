@@ -23,7 +23,7 @@ namespace Dagobah.Padawan.Domain.Entities
 
         public double PrecoLiquidacao { get; private set; }
 
-        public double PrecoTotal => Math.Round(Quantidade * PrecoLiquidacao, 2);
+        public double PrecoTotal => Quantidade * PrecoLiquidacao;
 
         public double CustoAquisicao
         {
@@ -42,7 +42,7 @@ namespace Dagobah.Padawan.Domain.Entities
                         break;
                 }
 
-                return Math.Round(custoAquisicao, 2);
+                return custoAquisicao;
             }
         }
 
@@ -57,7 +57,7 @@ namespace Dagobah.Padawan.Domain.Entities
 
                 var resultado = PrecoTotal / precoTotalNotaCorretagem.Value;
 
-                return Math.Round(resultado * 100, 1);
+                return resultado * 100;
             }
         }
 
@@ -67,10 +67,10 @@ namespace Dagobah.Padawan.Domain.Entities
             {
                 var percentualConsiderar = PercentualProporcional / 100;
 
-                var taxaCorretagem = Math.Round(NotaCorretagem.TaxaOperacao.Corretagem.Value * percentualConsiderar, 3);
-                var taxaLiquidacao = Math.Round(NotaCorretagem.TaxaOperacao.Liquidacao.Value * percentualConsiderar, 3);
-                var taxaEmolumentos = Math.Round(NotaCorretagem.TaxaOperacao.Emolumentos.Value * percentualConsiderar, 3);
-                var taxaOutros = Math.Round(NotaCorretagem.TaxaOperacao.Outros.Value * percentualConsiderar, 3);
+                var taxaCorretagem = NotaCorretagem.TaxaOperacao.Corretagem.Value * percentualConsiderar;
+                var taxaLiquidacao = NotaCorretagem.TaxaOperacao.Liquidacao.Value * percentualConsiderar;
+                var taxaEmolumentos = NotaCorretagem.TaxaOperacao.Emolumentos.Value * percentualConsiderar;
+                var taxaOutros = NotaCorretagem.TaxaOperacao.Outros.Value * percentualConsiderar;
 
                 return new TaxaOperacaoValueObject(taxaCorretagem, taxaLiquidacao, taxaEmolumentos, taxaOutros);
             }

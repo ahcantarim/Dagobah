@@ -56,7 +56,7 @@ namespace Dagobah.Padawan.Domain.UnitTest.Services
 
             #region Assert
 
-            Assert.AreEqual(somaTaxasProporcionais, notaCorretagem.TaxaOperacao.Total);
+            Assert.AreEqual(Math.Round(somaTaxasProporcionais, 2), Math.Round(notaCorretagem.TaxaOperacao.Total, 2));
 
             #endregion
         }
@@ -92,14 +92,13 @@ namespace Dagobah.Padawan.Domain.UnitTest.Services
             foreach (var notaCorretagemAtual in notasCorretagem2019)
             {
                 var somaTaxasProporcionais = notaCorretagemAtual.NotaCorretagemOperacaoCollection.Sum(x => x.TaxaOperacaoProporcional.Total);
-                somaTaxasProporcionais = Math.Round(somaTaxasProporcionais, 2);
 
                 var custoTotalNotaAtual = custosTotais.First(x => x.Key == notaCorretagemAtual);
 
                 #region Assert
 
-                Assert.AreEqual(somaTaxasProporcionais, notaCorretagemAtual.TaxaOperacao.Total);
-                Assert.AreEqual(notaCorretagemAtual.CustoAquisicaoTotal, custoTotalNotaAtual.Value);
+                Assert.AreEqual(Math.Round(somaTaxasProporcionais, 2), Math.Round(notaCorretagemAtual.TaxaOperacao.Total, 2), 0.1);
+                Assert.AreEqual(Math.Round(notaCorretagemAtual.CustoAquisicaoTotal, 2), Math.Round(custoTotalNotaAtual.Value, 2), 0.1);
 
                 # endregion
             }

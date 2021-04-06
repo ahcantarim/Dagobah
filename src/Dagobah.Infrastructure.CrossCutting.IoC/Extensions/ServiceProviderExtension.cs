@@ -6,6 +6,20 @@ using System.Reflection;
 
 namespace Dagobah.Infrastructure.CrossCutting.IoC.Extensions
 {
+    //public static class ServiceCollectionExtensions
+    //{
+    //    public static void RegisterAllTypes<T>(this IServiceCollection services, Assembly[] assemblies,
+    //        ServiceLifetime lifetime = ServiceLifetime.Transient)
+    //    {
+    //        var typesFromAssemblies = assemblies.SelectMany(a => a.DefinedTypes.Where(x => x.GetInterfaces().Contains(typeof(T))));
+    //        foreach (var type in typesFromAssemblies)
+    //            services.Add(new ServiceDescriptor(typeof(T), type, lifetime));
+    //    }
+    //}
+    //
+    // Utilização:
+    // services.RegisterAllTypes<IMinhaInterface>(new[] { typeof(Startup).Assembly });
+
     public static class ServiceProviderExtension
     {
         public static IEnumerable BatchRegister(this IServiceProvider serviceProvider, Assembly assembly, string @namespace)

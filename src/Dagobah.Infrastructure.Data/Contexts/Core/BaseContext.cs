@@ -19,7 +19,6 @@ namespace Dagobah.Infrastructure.Data.Contexts.Core
         #endregion
 
         #region Constructors
-
         public BaseContext() :
             base("DefaultConnectionString")
         {
